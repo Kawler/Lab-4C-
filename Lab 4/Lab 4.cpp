@@ -3,9 +3,10 @@
 
 int main()
 {
-    ComplexNum first = ComplexNum();
-    ComplexNum second = ComplexNum();
-    second.MultiplicationObj(first, second);
+	Matrix matrix = Matrix();
+	Matrix matrix2 = Matrix();
+	matrix.MultiplicationObj(matrix, matrix2);
+	matrix.Division(matrix, matrix2);
     return 0;
 
 }

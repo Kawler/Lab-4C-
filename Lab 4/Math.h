@@ -31,7 +31,7 @@ class Matrix :
 {
 protected:
 	int size;
-	vector<int> matrix;
+	vector<vector<double>> matrix;
 public:
 	Matrix();
 	void getData();
@@ -49,7 +49,7 @@ protected:
 	int size;
 	vector<int> polinom;
 public:
-	Polinom();
+	Polinom(int Size);
 	void getData();
 	void Extraction(Polinom obj1, Polinom obj2);
 	void Addition(Polinom obj1, Polinom obj2);
@@ -66,13 +66,13 @@ protected:
 	double y;
 	double z;
 public:
-	Vector(int X,int Y,int Z);
+	Vector(double X, double Y, double Z);
 	void getData();
 	void Extraction(Vector obj1, Vector obj2);
 	void Addition(Vector obj1, Vector obj2);
 	void Multiplication(Vector obj1, float num);
 	void MultiplicationObj(Vector obj1, Vector obj2);
-	void Division(Vector obj1, Vector obj2);
+	void Division(Vector obj1, float obj2);
 };
 
 class ComplexNum :

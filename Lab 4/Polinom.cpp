@@ -1,20 +1,7 @@
 #include "Math.h"
 
-Polinom::Polinom() {
-	int choice = 0;
-	while (choice <= 0 || choice > 10) {
-		cout << "Enter size of the polinom: ";
-		cin >> choice;
-	}
-	size = choice;
-	for (int i = 0; i < size; i++) {
-		choice = -101;
-		while (choice < -100 || choice > 100) {
-			cout << "Enter coefficient" << i <<": ";
-			cin >> choice;
-		}
-		polinom.push_back(choice);
-	}
+Polinom::Polinom(int Size) {
+	size = Size;
 }
 
 void Polinom::getData() {
