@@ -1,14 +1,10 @@
-#include <iostream>
 #include "Math.h"
+#include "Geometry.h"
 
 int main()
 {
-	Matrix matrix = Matrix();
-	Matrix matrix2 = Matrix();
-	matrix.MultiplicationObj(matrix, matrix2);
-	matrix.Division(matrix, matrix2);
-    return 0;
-
+	
+	return 0;
 }
 
 /*

@@ -39,6 +39,21 @@
     <ClCompile Include="ComplexNum.cpp">
       <Filter>Source Files\MathClasses</Filter>
     </ClCompile>
+    <ClCompile Include="Triangle.cpp">
+      <Filter>Source Files\GeometryClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Source Files\GeometryClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Rhombus.cpp">
+      <Filter>Source Files\GeometryClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Ellipse.cpp">
+      <Filter>Source Files\GeometryClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="Trapezoid.cpp">
+      <Filter>Source Files\GeometryClasses</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math.h">
