@@ -49,7 +49,7 @@ protected:
 	int size;
 	vector<int> polinom;
 public:
-	Polinom(int Size);
+	Polinom();
 	void getData();
 	void Extraction(Polinom obj1, Polinom obj2);
 	void Addition(Polinom obj1, Polinom obj2);

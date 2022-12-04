@@ -1,7 +1,20 @@
 #include "Math.h"
 
-Polinom::Polinom(int Size) {
-	size = Size;
+Polinom::Polinom() {
+	int choice = 0;
+	while (choice <= 0 || choice > 10) {
+		cout << "Enter size of the polinom: ";
+		cin >> choice;
+	}
+	size = choice;
+	for (int i = 0; i < size; i++) {
+		choice = -101;
+		while (choice < -100 || choice > 100) {
+			cout << "Enter coefficient" << i << ": ";
+			cin >> choice;
+		}
+		polinom.push_back(choice);
+	}
 }
 
 void Polinom::getData() {
@@ -36,6 +49,7 @@ void Polinom::Extraction(Polinom a, Polinom b)
 		if (i != sum.size() - 1)
 			cout << " - ";
 	}
+	cout << endl;
 }
 
 void Polinom::Addition(Polinom a, Polinom b) {
@@ -60,7 +74,7 @@ void Polinom::Addition(Polinom a, Polinom b) {
 		if (i != sum.size() - 1)
 			cout << " + ";
 	}
-
+	cout << endl;
 }
 
 void Polinom::Multiplication(Polinom a, float b)
@@ -77,6 +91,7 @@ void Polinom::Multiplication(Polinom a, float b)
 		if (i != sum.size() - 1)
 			cout << " + ";
 	}
+	cout << endl;
 }
 
 void Polinom::MultiplicationObj(Polinom a, Polinom b)
@@ -95,6 +110,7 @@ void Polinom::MultiplicationObj(Polinom a, Polinom b)
 		if (i != sum.size() - 1)
 			cout << " + ";
 	}
+	cout << endl;
 }
 
 void Polinom::Division(Polinom a, Polinom b)
@@ -113,4 +129,5 @@ void Polinom::Division(Polinom a, Polinom b)
 		if (i != sum.size() - 1)
 			cout << " + ";
 	}
+	cout << endl;
 }
