@@ -24,7 +24,7 @@ void ComplexNum::Extraction(ComplexNum obj1, ComplexNum obj2)
 	double tempr;
 	double tempi;
 	tempr = obj1.real - obj2.real;
-	tempi = obj2.imaginary - obj2.imaginary;
+	tempi = obj1.imaginary - obj2.imaginary;
 	cout << tempr << " + " << tempi << 'i' << endl;
 }
 
@@ -33,7 +33,7 @@ void ComplexNum::Addition(ComplexNum obj1, ComplexNum obj2)
 	double tempr;
 	double tempi;
 	tempr = obj1.real + obj2.real;
-	tempi = obj2.imaginary + obj2.imaginary;
+	tempi = obj1.imaginary + obj2.imaginary;
 	cout << tempr << " + " << tempi << 'i' << endl;
 }
 
@@ -51,7 +51,7 @@ void ComplexNum::MultiplicationObj(ComplexNum obj1, ComplexNum obj2)
 	double tempr;
 	double tempi;
 	tempr = obj1.real*obj2.real - obj1.imaginary * obj2.imaginary;
-	tempi = obj1.real * obj2.imaginary + obj1.real * obj2.imaginary;
+	tempi = obj2.real * obj1.imaginary + obj1.real * obj2.imaginary;
 	cout << tempr << " + " << tempi << 'i' << endl;
 }
 

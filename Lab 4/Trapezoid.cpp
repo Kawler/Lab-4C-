@@ -67,12 +67,20 @@ void Trapezoid::moveObj()
 
 void Trapezoid::turnObj()
 {
+	float pi = 3.14159265359;
 	float temp = 0;
 	while (temp <= 0 || temp > 360) {
 		cout << "Enter value: ";
 		cin >> temp;
 	}
 	turn += temp;
+	temp = turn * (pi / 180);
+	cout << "New point x[1]" << (x[1] - x[0]) * cos(-temp) - (y[1] - y[0]) * sin(-temp) + x[0] << endl;
+	cout << "New point y[1]" << (x[1] - x[0]) * sin(-temp) + (y[1] - y[0]) * cos(-temp) + x[0] << endl;
+	cout << "New point x[2]" << (x[2] - x[0]) * cos(-temp) - (y[2] - y[0]) * sin(-temp) + x[0] << endl;
+	cout << "New point y[2]" << (x[2] - x[0]) * sin(-temp) + (y[2] - y[0]) * cos(-temp) + x[0] << endl;
+	cout << "New point x[3]" << (x[3] - x[0]) * cos(-temp) - (y[3] - y[0]) * sin(-temp) + x[0] << endl;
+	cout << "New point y[3]" << (x[3] - x[0]) * sin(-temp) + (y[3] - y[0]) * cos(-temp) + x[0] << endl;
 }
 
 void Trapezoid::area()
@@ -97,7 +105,7 @@ void Trapezoid::draw()
 	convex.setPoint(2, sf::Vector2f(300 + x[2] * 10, 300 - y[2] * 10));
 	convex.setPoint(3, sf::Vector2f(300 + x[3] * 10, 300 - y[3] * 10));
 	convex.setPoint(4, sf::Vector2f(300 + x[3] * 10, 300 - y[3] * 10));
-	convex.setOrigin(300 + x[0] * 10, 300 - y[0] * 10);
+	convex.setOrigin(300, 300);
 	convex.setPosition(300, 300);
 	convex.setRotation(turn);
 	convex.setFillColor(sf::Color::Blue);

@@ -3,27 +3,32 @@
 static float turn = 0;
 
 Triangle::Triangle() {
+	bool condition = false;
 	double temp = -51;
-	cout << "Enter your triangle: " << endl;
+	while(condition == false){
+		cout << "Enter your triangle: " << endl;
 
-	for (int i = 0; i < 3; i++) {
-		while (temp <= -50 || temp > 50) {
-			cout << "Enter x" << i << ": ";
-			cin >> temp;
+		for (int i = 0; i < 3; i++) {
+			while (temp <= -50 || temp > 50) {
+				cout << "Enter x" << i << ": ";
+				cin >> temp;
+			}
+			x[i] = temp;
+			temp = -51;
+			while (temp <= -50 || temp > 50) {
+				cout << "Enter y" << i << ": ";
+				cin >> temp;
+			}
+			y[i] = temp;
+			temp = -51;
 		}
-		x[i] = temp;
-		temp = -51;
-		while (temp <= -50 || temp > 50) {
-			cout << "Enter y" << i << ": ";
-			cin >> temp;
-		}
-		y[i] = temp;
-		temp = -51;
+
+		side[0] = sqrt(pow((x[0] - x[1]), 2) + pow((y[0] - y[1]), 2));
+		side[1] = sqrt(pow((x[1] - x[2]), 2) + pow((y[1] - y[2]), 2));
+		side[2] = sqrt(pow((x[2] - x[0]), 2) + pow((y[2] - y[0]), 2));
+		if (side[0] + side[1] > side[2] && side[0] + side[2] > side[1] && side[1] + side[2] > side[0])
+			condition = true;
 	}
-
-	side[0] = sqrt(pow((x[0] - x[1]), 2) + pow((y[0] - y[1]), 2));
-	side[1] = sqrt(pow((x[1] - x[2]), 2) + pow((y[1] - y[2]), 2));
-	side[2] = sqrt(pow((x[2] - x[0]), 2) + pow((y[2] - y[0]), 2));
 
 }
 
@@ -65,12 +70,18 @@ void Triangle::moveObj()
 
 void Triangle::turnObj()
 {
+	float pi = 3.14159265359;
 	float temp = 0;
 	while (temp <= 0 || temp > 360) {
 		cout << "Enter value: ";
 		cin >> temp;
 	}
 	turn += temp;
+	temp = turn * (pi / 180);
+	cout << "New point x[1]" << (x[1] - x[0]) * cos(-temp) - (y[1] - y[0]) * sin(-temp) + x[0]<<endl;
+	cout << "New point y[1]" << (x[1] - x[0]) * sin(-temp) + (y[1] - y[0]) * cos(-temp) + x[0] << endl;
+	cout << "New point x[2]" << (x[2] - x[0]) * cos(-temp) - (y[2] - y[0]) * sin(-temp) + x[0] << endl;
+	cout << "New point y[2]" << (x[2] - x[0]) * sin(-temp) + (y[2] - y[0]) * cos(-temp) + x[0] << endl;
 }
 
 void Triangle::area()
@@ -93,8 +104,8 @@ void Triangle::draw()
 	convex.setPoint(0, sf::Vector2f(300+x[0]*10, 300 - y[0]*10));
 	convex.setPoint(1, sf::Vector2f(300 + x[1] * 10, 300 - y[1] * 10));
 	convex.setPoint(2, sf::Vector2f(300 + x[2] * 10, 300 - y[2] * 10));
-	convex.setOrigin(300 + x[0] * 10, 300 - y[0] * 10);
 	convex.setPosition(300, 300);
+	convex.setOrigin(300, 300);
 	convex.setRotation(turn);
 	convex.setFillColor(sf::Color::Blue);
 	sf::Vertex line[] =

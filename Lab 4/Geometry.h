@@ -36,9 +36,8 @@ class Rectangle :
 	public BasicFunctions
 {
 protected:
-	double sideA;
-	double sideB;
-	double ct[2];
+	double x[4], y[4];
+	double side[4];
 public:
 	Rectangle();
 	virtual void moveObj() override;
@@ -52,8 +51,9 @@ class Rhombus :
 	public BasicFunctions
 {
 protected:
-	double sideA;
-	double ct[2];
+	double x[4], y[4];
+	double side[4];
+	double angle = 0;
 public:
 	Rhombus();
 	virtual void moveObj() override;

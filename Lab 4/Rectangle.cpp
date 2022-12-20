@@ -4,21 +4,34 @@ static float turn = 0;
 
 Rectangle::Rectangle()
 {
-	double temp = 0;
-	cout << "Enter your rectangle: " << endl;
-	while (temp <= 0 || temp > 50) {
-		cout << "Enter side a: ";
-		cin >> temp;
+	bool condition = false;
+	double temp = -51;
+	while (condition == false) {
+		cout << "Enter your reactnagle: " << endl;
+
+		for (int i = 0; i < 4; i++) {
+			while (temp <= -50 || temp > 50) {
+				cout << "Enter x" << i << ": ";
+				cin >> temp;
+			}
+			x[i] = temp;
+			temp = -51;
+			while (temp <= -50 || temp > 50) {
+				cout << "Enter y" << i << ": ";
+				cin >> temp;
+			}
+			y[i] = temp;
+			temp = -51;
+		}
+
+		side[0] = sqrt(pow((x[0] - x[1]), 2) + pow((y[0] - y[1]), 2));
+		side[1] = sqrt(pow((x[1] - x[2]), 2) + pow((y[1] - y[2]), 2));
+		side[2] = sqrt(pow((x[2] - x[3]), 2) + pow((y[2] - y[3]), 2));
+		side[3] = sqrt(pow((x[3] - x[0]), 2) + pow((y[3] - y[0]), 2));
+
+		if (side[0]==side[2]&&side[1]==side[3]&&side[0]*side[1]>0)
+			condition = true;
 	}
-	sideA = temp;
-	temp = -51;
-	while (temp <= 0 || temp > 50) {
-		cout << "Enter side B: ";
-		cin >> temp;
-	}
-	sideB = temp;
-	ct[0] = 0;
-	ct[1] = 0;
 }
 
 void Rectangle::moveObj()
@@ -39,7 +52,8 @@ void Rectangle::moveObj()
 				cout << "Enter value: ";
 				cin >> temp;
 			}
-			ct[0] += temp;
+			for (int i = 0; i < 4; i++)
+				x[i] += temp;
 			temp = 0;
 			break;
 		case 2:
@@ -47,7 +61,8 @@ void Rectangle::moveObj()
 				cout << "Enter value: ";
 				cin >> temp;
 			}
-			ct[1] += temp;
+			for (int i = 0; i < 4; i++)
+				y[i] += temp;
 			temp = 0;
 			break;
 		}
@@ -56,29 +71,44 @@ void Rectangle::moveObj()
 
 void Rectangle::turnObj()
 {
+	float pi = 3.14159265359;
 	float temp = 0;
 	while (temp <= 0 || temp > 360) {
 		cout << "Enter value: ";
 		cin >> temp;
 	}
 	turn += temp;
+	temp = turn * (pi / 180);
+	cout << "New point x[1]" << (x[1] - x[0]) * cos(-temp) - (y[1] - y[0]) * sin(-temp) + x[0] << endl;
+	cout << "New point y[1]" << (x[1] - x[0]) * sin(-temp) + (y[1] - y[0]) * cos(-temp) + x[0] << endl;
+	cout << "New point x[2]" << (x[2] - x[0]) * cos(-temp) - (y[2] - y[0]) * sin(-temp) + x[0] << endl;
+	cout << "New point y[2]" << (x[2] - x[0]) * sin(-temp) + (y[2] - y[0]) * cos(-temp) + x[0] << endl;
+	cout << "New point x[3]" << (x[3] - x[0]) * cos(-temp) - (y[3] - y[0]) * sin(-temp) + x[0] << endl;
+	cout << "New point y[3]" << (x[3] - x[0]) * sin(-temp) + (y[3] - y[0]) * cos(-temp) + x[0] << endl;
 }
 
 void Rectangle::area()
 {
-	cout << "Area = " << sideA * sideB << endl;
+	cout << "Area = " << side[0]*side[1] << endl;
 }
 
 void Rectangle::perimetr()
 {
-	cout << "Perimetr = " << (sideA + sideB)*2 << endl;
+	cout << "Perimetr = " << (side[0]+side[1]) * 2 << endl;
 }
 
 void Rectangle::draw()
 {
 	sf::RenderWindow window(sf::VideoMode(600, 600), "Window");
-	sf::RectangleShape convex(sf::Vector2f(sideA * 10, sideB * 10));
-	convex.setPosition(300 + ct[0], 300 + ct[1]);
+	sf::ConvexShape convex;
+	convex.setPointCount(5);
+	convex.setPoint(0, sf::Vector2f(300 + x[0] * 10, 300 - y[0] * 10));
+	convex.setPoint(1, sf::Vector2f(300 + x[1] * 10, 300 - y[1] * 10));
+	convex.setPoint(2, sf::Vector2f(300 + x[2] * 10, 300 - y[2] * 10));
+	convex.setPoint(3, sf::Vector2f(300 + x[3] * 10, 300 - y[3] * 10));
+	convex.setPoint(4, sf::Vector2f(300 + x[3] * 10, 300 - y[3] * 10));
+	convex.setOrigin(300, 300);
+	convex.setPosition(300, 300);
 	convex.setRotation(turn);
 	convex.setFillColor(sf::Color::Blue);
 	sf::Vertex line[] =
